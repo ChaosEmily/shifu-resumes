@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emily Li — 給 ShiFu 大師學院的一封信</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+TC:wght@300;400;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────── */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #0A0A0A;
+      --off-black: #111111;
+      --charcoal: #1A1A1A;
+      --dim: #2A2A2A;
+      --muted: #444444;
+      --dust: #888888;
+      --ghost: #BBBBBB;
+      --cream: #E8E2D8;
+      --white: #F5F2EE;
+      --red: #C8202A;
+      --red-dim: #8B1219;
+      --red-bright: #E8303A;
+      --gold: #A8924A;
+      --gold-light: #C4A96A;
+      --gold-gradient: linear-gradient(135deg, #8B7635, #C4A96A, #E8D5A0, #C4A96A, #8B7635);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-zh: 'Noto Sans TC', 'PingFang TC', sans-serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --pad-x: clamp(28px, 7vw, 96px);
+      --section-pad: clamp(100px, 14vw, 168px) var(--pad-x);
+      --max-width: 1080px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-zh);
+      font-weight: 300;
+      line-height: 2.1;
+      font-size: clamp(15px, 1.6vw, 17px);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN TEXTURE ─────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.3;
+    }
+
+    /* ── SHARED ──────────────────────────────────────── */
+    .label {
+      font-family: var(--font-mono);
+      font-size: clamp(12px, 1.2vw, 14px);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s ease-in-out infinite;
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .rule {
+      width: 40px;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      animation: shimmer 4s ease-in-out infinite;
+      display: block;
+      margin: 0 0 40px;
+    }
+
+    @keyframes shimmer {
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--dim) 20%, var(--dim) 80%, transparent);
+    }
+
+    /* ── NAV ────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 24px var(--pad-x);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(to bottom, rgba(10, 10, 10, 0.95) 0%, transparent 100%);
+    }
+
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--ghost);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    .nav-logo:hover {
+      color: var(--cream);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(24px, 4vw, 48px);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dust);
+      text-decoration: none;
+      transition: color 0.6s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--cream);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* ── HERO — editorial left-aligned ─────────────────── */
+    #hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: clamp(120px, 16vw, 200px) var(--pad-x) clamp(80px, 10vw, 120px);
+      position: relative;
+      overflow: hidden;
+      background: url('a14584db7f95a64f02dc1e9c326dd09c.jpg') right 0 top 5% / cover no-repeat;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+          var(--black) 0%,
+          var(--black) 30%,
+          rgba(10, 10, 10, 0.85) 45%,
+          rgba(10, 10, 10, 0.4) 65%,
+          rgba(10, 10, 10, 0.15) 80%,
+          transparent 100%);
+      z-index: 1;
+    }
+
+    .hero-layout {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-text {
+      opacity: 0;
+      animation: fadeUp 1.4s 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .hero-hook {
+      font-family: var(--font-zh);
+      font-size: clamp(36px, 7vw, 72px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--white);
+      margin-bottom: clamp(24px, 4vw, 40px);
+      text-wrap: balance;
+    }
+
+    .hero-body {
+      font-size: clamp(15px, 1.6vw, 17px);
+      font-weight: 300;
+      color: var(--ghost);
+      max-width: 520px;
+      line-height: 2;
+    }
+
+    .hero-body p {
+      margin-bottom: 1em;
+    }
+
+    .hero-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      animation: fadeIn 1.4s 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .scroll-cue span {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 60px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+      animation: scrollPulse 2s 1.5s ease-in-out infinite;
+    }
+
+    /* ── SIDE DECORATION ──────────────────────────────── */
+    .side-deco {
+      position: fixed;
+      writing-mode: vertical-rl;
+      font-family: var(--font-zh);
+      font-size: 12px;
+      letter-spacing: 0.5em;
+      color: var(--white);
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      z-index: 1;
+    }
+
+    .side-deco--left {
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .side-deco--right {
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* ── SECTION BASE ──────────────────────────────────── */
+    section {
+      padding: var(--section-pad);
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    section.bleed {
+      max-width: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    section.bleed>.inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--pad-x);
+    }
+
+    /* ── LETTER — mirrored hero (image left, text right) ── */
+    #letter {
+      min-height: 80svh;
+      display: flex;
+      align-items: center;
+      padding: clamp(100px, 14vw, 168px) var(--pad-x);
+      max-width: none;
+      position: relative;
+      overflow: hidden;
+      background: url('image.jpg') left 0 top 10% / 45% auto no-repeat;
+      background-color: var(--black);
+    }
+
+    #letter::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          var(--black) 0%,
+          rgba(10, 10, 10, 0.6) 18%,
+          transparent 42%),
+        linear-gradient(to bottom,
+          rgba(10, 10, 10, 0.4) 0%,
+          transparent 12%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #letter::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to left,
+          var(--black) 0%,
+          var(--black) 20%,
+          rgba(10, 10, 10, 0.92) 35%,
+          rgba(10, 10, 10, 0.7) 48%,
+          rgba(10, 10, 10, 0.35) 62%,
+          rgba(10, 10, 10, 0.12) 78%,
+          transparent 100%);
+      z-index: 0;
+    }
+
+    #letter .letter-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    #letter .letter-content {
+      max-width: 560px;
+      text-align: left;
+      background: rgba(10, 10, 10, 0.55);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 6px;
+      padding: clamp(32px, 4vw, 52px);
+    }
+
+    /* ── gold accent line above label ── */
+    #letter .label::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1.5px;
+      background: var(--gold-gradient);
+      margin-bottom: 14px;
+    }
+
+    #letter .pull-quote {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 38px);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--white);
+      line-height: 1.6;
+      margin-bottom: clamp(24px, 3vw, 40px);
+      position: relative;
+      padding-left: 1.2em;
+    }
+
+    /* ── decorative gold quote marks ── */
+    #letter .pull-quote::before,
+    #letter .pull-quote::after {
+      position: absolute;
+      font-size: 2.8em;
+      font-weight: 400;
+      background: var(--gold-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 0.35;
+      line-height: 1;
+    }
+
+    #letter .pull-quote::before {
+      content: '\201C';
+      left: -0.05em;
+      top: -0.15em;
+    }
+
+    #letter .pull-quote::after {
+      content: '\201D';
+      position: relative;
+      margin-left: 0.1em;
+      top: 0.05em;
+      font-size: 1.2em;
+    }
+
+    #letter .letter-detail {
+      color: var(--cream);
+      font-size: clamp(14px, 1.5vw, 16px);
+      line-height: 2;
+    }
+
+    #letter .letter-detail p {
+      margin-bottom: 1em;
+    }
+
+    #letter .letter-detail p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── SHIFU OBSERVATIONS — dark + red split ─────────── */
+    .section-dark {
+      background: var(--charcoal);
+      position: relative;
+    }
+
+    #shifu-eyes .observations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(20px, 3vw, 36px);
+      align-items: stretch;
+      padding: 0 var(--pad-x);
+    }
+
+    #shifu-eyes .observation {
+      padding: clamp(36px, 4.5vw, 60px);
+      padding-left: clamp(40px, 5vw, 64px);
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    #shifu-eyes .observation:hover {
+      transform: translateY(-3px);
+    }
+
+    /* left accent bar via pseudo-element (preserves border-radius) */
+    #shifu-eyes .observation::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+    }
+
+    .observation--dark {
+      background: var(--charcoal);
+      border: 1px solid var(--dim);
+      border-left: none;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .observation--dark::before {
+      background: var(--gold-gradient);
+    }
+
+    .observation--dark:hover {
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .observation--red {
+      background: linear-gradient(145deg, #D42832 0%, #C8202A 30%, #9B1820 70%, #7A1018 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-left: none;
+      box-shadow: 0 4px 24px rgba(139, 18, 25, 0.25);
+    }
+
+    .observation--red::before {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .observation--red:hover {
+      box-shadow: 0 8px 40px rgba(139, 18, 25, 0.4);
+    }
+
+    .observation--red h3 {
+      color: var(--white) !important;
+    }
+
+    .observation--red p {
+      color: rgba(255, 255, 255, 0.75) !important;
+    }
+
+    #shifu-eyes .observation h3 {
+      font-size: clamp(22px, 2.8vw, 32px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 20px;
+      line-height: 1.4;
+      font-family: var(--font-display);
+    }
+
+    /* dark card title: gold gradient */
+    .observation--dark h3 {
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    #shifu-eyes .observation p {
+      color: var(--dust);
+      font-size: clamp(14px, 1.4vw, 15px);
+      line-height: 1.9;
+      border-left: 2px solid rgba(255, 255, 255, 0.08);
+      padding-left: 1em;
+    }
+
+    .observation--red p {
+      border-left-color: rgba(255, 255, 255, 0.18) !important;
+    }
+
+    /* ── CLOSING QUESTION ────────────────────────────── */
+    .closing-break {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(60px, 10vw, 120px) var(--pad-x);
+      max-width: none;
+    }
+
+    .closing-break .closing-question {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 4vw, 40px);
+      color: var(--cream);
+      font-weight: 300;
+      font-style: italic;
+      max-width: 600px;
+      line-height: 1.6;
+      position: relative;
+    }
+
+    .closing-break .closing-question::before,
+    .closing-break .closing-question::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      animation: shimmer 4s ease-in-out infinite;
+      margin: 0 auto 32px;
+    }
+
+    .closing-break .closing-question::after {
+      margin: 32px auto 0;
+    }
+
+    /* ── STATEMENT — background image block ──────────── */
+    .statement-break {
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(80px, 12vw, 160px) var(--pad-x);
+      max-width: none;
+      position: relative;
+      background: url('da149a987528c0e01e738b68b881fa31.jpg') center top 10% / auto 100% no-repeat;
+      background-color: var(--black);
+    }
+
+    .statement-break::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 10, 10, 0.45);
+      z-index: 1;
+    }
+
+    .statement-break .statement-text {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3.5vw, 36px);
+      color: var(--white);
+      font-weight: 300;
+      font-style: italic;
+      max-width: 640px;
+      line-height: 1.8;
+      position: relative;
+      z-index: 2;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7), 0 4px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .statement-break .statement-text::before,
+    .statement-break .statement-text::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      animation: shimmer 4s ease-in-out infinite;
+      margin: 0 auto 32px;
+    }
+
+    .statement-break .statement-text::after {
+      margin: 32px auto 0;
+    }
+
+    /* ── WORKS — alternating grid ───────────────────────── */
+    #works {
+      max-width: var(--max-width);
+    }
+
+    #works h2 {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: clamp(48px, 6vw, 72px);
+    }
+
+    .work-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(24px, 4vw, 48px);
+      align-items: center;
+      margin-bottom: clamp(68px, 10vw, 112px);
+      padding-bottom: clamp(68px, 10vw, 112px);
+      border-bottom: 1px solid var(--dim);
+    }
+
+    .work-card:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    /* Alternate: even cards flip the visual to the right */
+    .work-card:nth-child(even) {
+      direction: rtl;
+    }
+
+    .work-card:nth-child(even)>* {
+      direction: ltr;
+    }
+
+    .work-card-visual {
+      position: relative;
+    }
+
+    .work-card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .work-card-num {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 80px);
+      font-weight: 300;
+      font-style: italic;
+      background: var(--gold-gradient);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      opacity: 1;
+      line-height: 1;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .work-card h3 {
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .work-card .work-signal {
+      font-family: var(--font-mono);
+      font-size: clamp(14px, 1.6vw, 18px);
+      letter-spacing: 0.05em;
+      color: var(--red);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .work-card p {
+      color: var(--dust);
+      font-size: clamp(14px, 1.4vw, 15px);
+      line-height: 1.9;
+      margin-bottom: 10px;
+    }
+
+    .work-card .work-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ghost);
+      text-decoration: none;
+      padding: 10px 20px;
+      border: 1px solid var(--dim);
+      transition: border-color 0.6s, color 0.6s, background 0.6s;
+    }
+
+    .work-card .work-link:hover {
+      border-color: var(--gold-light);
+      color: var(--white);
+      background: rgba(168, 146, 74, 0.06);
+    }
+
+    /* ── WORK VISUALS ──────────────────────────────────── */
+    .work-visual {
+      width: 100%;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--dim);
+      transition: border-color 0.7s, box-shadow 0.7s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .work-card:hover .work-visual {
+      border-color: var(--muted);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .work-visual .wv-tag {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* Newsgame — warm coffee tones + bar chart */
+    .work-visual--game {
+      background: linear-gradient(135deg, #1a1208 0%, #2a1f10 40%, #1a1510 100%);
+    }
+
+    .work-visual--game::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(168, 146, 74, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168, 146, 74, 0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .work-visual--game .wv-deco {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      height: 55%;
+      padding: 0 18%;
+      width: 100%;
+    }
+
+    .work-visual--game .wv-bar {
+      flex: 1;
+      background: linear-gradient(to top, var(--gold), transparent);
+      opacity: 0.15;
+      border-radius: 2px 2px 0 0;
+      transition: opacity 0.3s;
+    }
+
+    .work-card:hover .work-visual--game .wv-bar {
+      opacity: 0.25;
+    }
+
+    .work-visual--game .wv-bar:nth-child(1) {
+      height: 65%;
+    }
+
+    .work-visual--game .wv-bar:nth-child(2) {
+      height: 85%;
+    }
+
+    .work-visual--game .wv-bar:nth-child(3) {
+      height: 45%;
+    }
+
+    .work-visual--game .wv-bar:nth-child(4) {
+      height: 95%;
+    }
+
+    .work-visual--game .wv-bar:nth-child(5) {
+      height: 55%;
+    }
+
+    .work-visual--game .wv-bar:nth-child(6) {
+      height: 75%;
+    }
+
+    /* Research — data feel with stats */
+    .work-visual--research {
+      background: linear-gradient(135deg, #0d0f14 0%, #141820 40%, #0d0f14 100%);
+    }
+
+    .work-visual--research::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 30% 40%, rgba(200, 32, 42, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 70% 60%, rgba(168, 146, 74, 0.05) 0%, transparent 50%);
+    }
+
+    .work-visual--research .wv-stats {
+      display: flex;
+      gap: clamp(20px, 4vw, 40px);
+      z-index: 1;
+    }
+
+    .work-visual--research .wv-stat {
+      text-align: center;
+    }
+
+    .work-visual--research .wv-stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 300;
+      color: var(--white);
+      opacity: 0.3;
+      line-height: 1;
+      display: block;
+      transition: opacity 0.3s;
+    }
+
+    .work-card:hover .wv-stat-num {
+      opacity: 0.5;
+    }
+
+    .work-visual--research .wv-stat-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* Book cover */
+    .book-cover-inline {
+      width: 100%;
+      max-width: 280px;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+      border: 1px solid var(--dim);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: clamp(16px, 3vw, 28px);
+      transition: border-color 0.7s, box-shadow 0.7s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .work-card:hover .book-cover-inline {
+      border-color: var(--muted);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+      transform: translateY(-4px);
+    }
+
+    .book-cover-inline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 8px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+    }
+
+    .book-cover-inline::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: var(--red);
+      opacity: 0.4;
+      border-radius: 50%;
+    }
+
+    .book-cover-inline .bc-corner {
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 24px;
+      height: 24px;
+      border-bottom: 1px solid var(--gold-light);
+      border-right: 1px solid var(--gold-light);
+      opacity: 0.35;
+      transition: opacity 0.6s;
+      pointer-events: none;
+    }
+
+    .work-card:hover .bc-corner {
+      opacity: 0.6;
+    }
+
+    .book-cover-inline .bc-title {
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.3;
+    }
+
+    .book-cover-inline .bc-sub {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(11px, 1.2vw, 14px);
+      color: var(--dust);
+      margin-top: 6px;
+    }
+
+    /* ── ABOUT ME ──────────────────────────────────────── */
+    #about-me {
+      text-align: center;
+    }
+
+    #about-me .narrative {
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 400;
+      color: var(--white);
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* ── CONTACT ───────────────────────────────────────── */
+    #contact {
+      background: var(--charcoal);
+      max-width: none;
+      padding: clamp(60px, 8vw, 100px) var(--pad-x);
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 300;
+      color: var(--white);
+      margin-bottom: 32px;
+      letter-spacing: -0.02em;
+    }
+
+    .contact-items {
+      display: flex;
+      justify-content: center;
+      gap: clamp(32px, 5vw, 56px);
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      text-decoration: none;
+      color: var(--ghost);
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .contact-item:hover {
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .contact-item .ci-label {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .contact-item .ci-value {
+      font-size: clamp(14px, 1.5vw, 16px);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: clamp(20px, 3vw, 32px) var(--pad-x);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+    }
+
+    footer p {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+
+    .footer-mark {
+      width: 6px;
+      height: 6px;
+      background: var(--red);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 1.2s cubic-bezier(0.22, 1, 0.36, 1), transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.2s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.4s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.6s;
+    }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      #hero {
+        background-position: center center;
+      }
+
+      #hero::after {
+        background: linear-gradient(to bottom,
+            rgba(10, 10, 10, 0.7) 0%,
+            rgba(10, 10, 10, 0.5) 50%,
+            rgba(10, 10, 10, 0.8) 100%);
+      }
+
+      .hero-hook {
+        font-size: clamp(32px, 9vw, 52px);
+      }
+
+      #letter {
+        background-position: center center;
+        background-size: cover;
+      }
+
+      #letter::after {
+        background: linear-gradient(to bottom,
+            rgba(10, 10, 10, 0.7) 0%,
+            rgba(10, 10, 10, 0.5) 50%,
+            rgba(10, 10, 10, 0.8) 100%);
+      }
+
+      #letter .letter-inner {
+        justify-content: center;
+      }
+
+      #shifu-eyes .observations-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card {
+        grid-template-columns: 1fr;
+      }
+
+      .work-card:nth-child(even) {
+        direction: ltr;
+      }
+
+      .work-card-visual {
+        order: -1;
+      }
+
+      .contact-items {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .side-deco {
+        display: none;
+      }
+
+      .book-cover-inline {
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── SIDE DECORATION ───────────────────────────────── -->
+  <div class="side-deco side-deco--left">新聞 × 行銷 × 遊戲</div>
+  <div class="side-deco side-deco--right">知識轉譯 × 課程企劃</div>
+
+  <!-- ── NAV ──────────────────────────────────────────── -->
+  <nav>
+    <a href="#hero" class="nav-logo">Emily Li</a>
+    <ul class="nav-links">
+      <li><a href="#shifu-eyes">ShiFu</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#about-me">Next</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── HERO ──────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-layout">
+      <div class="hero-text">
+        <h1 class="hero-hook">
+          改變我的，從來不只是技能。
+        </h1>
+        <div class="hero-body">
+          <p><strong
+              style="background: var(--gold-gradient); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s ease-in-out infinite;">考試、證照、職場技能—為什麼我們要花錢買課程？</strong>
+          </p>
+          <p>我花了很多年，學習怎麼把事情做好。但真正對我造成影響的，是<span
+              style="color: var(--red-bright);">某個人的獨特生命經驗，給我的「啟蒙時刻」</span>，讓我用不同的方式，看待自己的生命軌跡。</p>
+        </div>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ── STATEMENT ─────────────────────────────────────── -->
+  <section class="statement-break">
+    <p class="statement-text reveal">
+      <span style="font-size: 0.65em; display: block; margin-bottom: 16px;">ShiFu
+        大師課在做的，就是把這樣的啟蒙時刻，<br>設計成一段美好成長體驗：</span><span
+        style="background: var(--gold-gradient); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s ease-in-out infinite; text-shadow: none;">讓大師一路走來的獨特人生經驗，<br>成為重新看待自己的起點。</span>
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── LETTER — pull-quote ──────────────────────────── -->
+  <section id="letter">
+    <div class="letter-inner">
+      <div class="letter-content">
+        <span class="label reveal">Who Am I</span>
+        <p class="pull-quote reveal reveal-delay-1">
+          我一直在做的，是挖掘值得被說出來的故事，然後轉化成能感動受眾的作品。
+        </p>
+        <div class="letter-detail reveal reveal-delay-2">
+          <p>在新聞業，我每天篩選大量國際新聞，包裝成受眾容易理解的內容，打開他們的視野。</p>
+          <p>在行銷業，我深度挖掘企業與創辦人特色，用他們的獨特故事，打動更多潛在客戶。</p>
+          <p>在遊戲業，我學會和工程師、美術一起合作，把故事轉化成玩家能親身走入、互動的世界。</p>
+          <p
+            style="font-size: clamp(18px, 2.2vw, 22px); font-weight: 700; font-style: italic; background: var(--gold-gradient); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s ease-in-out infinite; margin-top: 1.5em;">
+            我想延續這樣的創作信念，和 ShiFu 團隊一起，把每位大師的故事，做成能讓學員們仔細品味的好作品。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 我眼中的 ShiFu — dark + red split ──────────── -->
+  <section id="shifu-eyes" class="bleed">
+    <div class="inner">
+      <span class="label reveal">My View</span>
+      <h2 class="reveal"
+        style="font-family: var(--font-display); font-size: clamp(22px, 3vw, 36px); font-weight: 300; color: var(--white); line-height: 1.6; margin-top: 12px; margin-bottom: clamp(32px, 4vw, 52px);">
+        ShiFu 團隊的創意思考：<br><span style="color: var(--ghost);">用獨特的思路，思考相同的問題</span></h2>
+    </div>
+    <div class="observations-grid" style="max-width: var(--max-width); margin: 0 auto;">
+      <div class="observation observation--dark reveal reveal-delay-1">
+        <h3>為什麼是「師父」？</h3>
+        <p>品牌選這兩個字，本身就暗示了一件事：ShiFu 賣的不是一次知識交易，而是一段關係和成長歷程。「老師」、「講師」解決你的特定需求，「師父」改變你看事情的方式，讓你一生受用。</p>
+      </div>
+      <div class="observation observation--red reveal reveal-delay-2">
+        <h3>什麼是「成長」？</h3>
+        <p>學員買課程，買的是「學習」，還是「成長」？當我們聚焦在「人的成長」，那麼師父能教給學員的，就不只是技能。技能會過時。但一個人看待問題的方式，會跟著他一輩子。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 收尾提問 ──────────────────────────────────────── -->
+  <section class="closing-break">
+    <p class="closing-question reveal"><span
+        style="background: var(--gold-gradient); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s ease-in-out infinite; text-shadow: none;">同樣的問題，不同的切入方式</span><br>以下是我做過的幾件事。
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 三件作品 — alternating grid ──────────────────── -->
+  <section id="works">
+    <span class="label reveal">Selected Works</span>
+    <h2 class="reveal"><em style="font-style:italic; font-family:var(--font-display); color:var(--ghost);">Works</em>
+    </h2>
+
+    <!-- 作品 1：咖啡危機 Newsgame — visual left, text right -->
+    <div class="work-card reveal">
+      <div class="work-card-visual">
+        <img src="coffee-game.jpg" alt="高章洙的咖啡危機 — 互動新聞遊戲"
+          style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+      </div>
+      <div class="work-card-content">
+        <span class="work-card-num">01</span>
+        <h3>新聞遊戲：<br>
+          《高章洙的咖啡危機》
+        </h3>
+        <span class="work-signal">把知識，轉化成有趣的互動體驗</span>
+        <p>把紐約時報一篇關於韓國咖啡店產業的深度報導，轉化為一款互動式決策遊戲。玩家扮演首爾獨立咖啡店老闆，在四個季度中面對經營決策。</p>
+        <a href="https://chaosemily.github.io/coffee-game/" target="_blank" class="work-link">Play the Game &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 作品 2：電子書 — text left, visual right (even = reversed) -->
+    <div class="work-card reveal">
+      <div class="work-card-visual">
+        <img src="outcasts-fortress.jpg" alt="The Outcasts' Fortress — Wednesday's Survival Guide"
+          style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+      </div>
+      <div class="work-card-content">
+        <span class="work-card-num">02</span>
+        <h3>《星期三》主題電子書：<br>
+          《The Outcasts' Fortress》</h3>
+        <span class="work-signal">洞察熱門作品世界觀，挖掘他人尚未發現的獨特價值，做成電子書</span>
+        <p>從熱門 Netflix 影集《星期三》中，找到還沒有粉絲深入討論過的故事角度，寫成一本有明確問題意識和結構的英文電子書，上架亞馬遜。</p>
+        <a href="https://www.amazon.com/dp/B0GQJ2DNK5" target="_blank" class="work-link">View on Amazon &rarr;</a>
+      </div>
+    </div>
+
+    <!-- 作品 3：ShiFu 研究 — visual left, text right -->
+    <div class="work-card reveal">
+      <div class="work-card-visual">
+        <img src="shifu-research.jpg" alt="ShiFu 課程產品體驗研究"
+          style="width:100%; height:100%; object-fit:cover; border-radius:8px;">
+      </div>
+      <div class="work-card-content">
+        <span class="work-card-num">03</span>
+        <h3>課程產品反思：</h3>
+        <h3>課程，可以是一段產品體驗旅程</br></h3>
+        <span class="work-signal">用行銷思維，拆解什麼是「受眾想付費的課程體驗」
+        </span>
+        <p>把 ShiFu 的課程當成「體驗型產品」分析：TA
+          想買什麼體驗？買完記住什麼？不滿意的人期待的又是什麼？透過平台數據研究與社群評論分析回答這些問題，並檢視課程設計如何更完善地打造 TA 期待的課程體驗。完整的研究，我很樂意在面試中聊。</p>
+        <a href="https://docs.google.com/presentation/d/1ruUc36bYh21dbU5wDYAPgZ9d_FJLtpp_/edit?usp=sharing&ouid=109693727108015238414&rtpof=true&sd=true"
+          target="_blank" class="work-link">View Research &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 關於我 ────────────────────────────────────────── -->
+  <section id="about-me">
+    <span class="label reveal" style="text-align:center;">Next</span>
+    <span class="rule reveal reveal-delay-1" style="margin: 0 auto 40px;"></span>
+    <p class="narrative reveal reveal-delay-2" style="font-size: clamp(14px, 1.6vw, 17px); color: var(--cream);">
+      每位大師，都是一個全新的世界——要走進去，找到最值得被展開的故事，再和團隊一起，把它做成讓人想一直看下去的作品。
+    </p>
+    <p class="narrative reveal reveal-delay-2"
+      style="font-size: clamp(22px, 3vw, 32px); font-weight: 700; background: var(--gold-gradient); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 4s ease-in-out infinite; margin-top: 1.2em;">
+      我待了三個產業持續做這件事，下一個故事，我準備好了。
+    </p>
+  </section>
+
+  <!-- ── 聯繫方式 ──────────────────────────────────────── -->
+  <section id="contact">
+    <h2>Looking forward to the conversation.</h2>
+    <div class="contact-items">
+      <a href="mailto:justicemily@gmail.com" class="contact-item">
+        <span class="ci-label">Email</span>
+        <span class="ci-value">justicemily@gmail.com</span>
+      </a>
+      <a href="#" class="contact-item">
+        <span class="ci-label">LinkedIn</span>
+        <span class="ci-value">Emily Li</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ────────────────────────────────────────── -->
+  <footer>
+    <p>&copy; 2026 Emily Li</p>
+    <div class="footer-mark"></div>
+  </footer>
+
+  <!-- ── SCROLL REVEAL JS ──────────────────────────────── -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+
+</html>
